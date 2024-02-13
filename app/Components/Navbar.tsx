@@ -21,7 +21,7 @@ function Navbar() {
           <ThemeDropdown />
 
           <Button
-            className="source-code flex items-center gap-2"
+            className="source-code-btn flex items-center gap-2"
             onClick={() => {
               router.push("https//github.com");
             }}

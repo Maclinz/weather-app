@@ -90,3 +90,52 @@
 .temperature {
   background-image: linear-gradient(to right, #00dfff 0%, #00f9ff 20%, yellow);
 }
+
+.footer-text > img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+}
+
+footer:hover .footer-text > img {
+  filter: grayscale(0%);
+}
+
+@media screen and (max-width: 581px) {
+  .btn-group {
+    position: fixed;
+    bottom: 2%;
+    right: 1rem;
+    z-index: 1000;
+  }
+
+  .btn-group button {
+    box-shadow: 2px 3px 0.3rem 0.3rem rgba(0, 0, 0, 0.1);
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+
+  .search-btn button {
+    width: 100%;
+  }
+
+  .source-code-btn {
+    order: -1;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .mapbox-con {
+    flex-direction: column;
+  }
+
+  .mapbox-con > div:first-child {
+    height: 24rem;
+    flex: initial;
+  }
+}
