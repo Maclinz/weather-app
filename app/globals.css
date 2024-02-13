@@ -86,3 +86,7 @@
     rgba(178, 34, 34, 1) 100%
   );
 }
+
+.temperature {
+  background-image: linear-gradient(to right, #00dfff 0%, #00f9ff 20%, yellow);
+}
