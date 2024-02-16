@@ -61,7 +61,10 @@ function Temperature() {
       setLocalTime(formatedTime);
       setCurrentDay(day);
     }, 1000);
-  }, []);
+
+    // clear interval
+    return () => clearInterval(interval);
+  }, [timezone]);
 
   return (
     <div
