@@ -22,7 +22,7 @@ function UvIndex() {
     if (uvIndex <= 2) {
       return {
         text: "Low",
-        description: "No protection required",
+        protection: "No protection required",
       };
     } else if (uvIndex <= 5) {
       return {
@@ -39,6 +39,11 @@ function UvIndex() {
         text: "Very High",
         protection: "Apply sunscreen SPF 30+ every 2 hours.",
       };
+    } else if (uvIndex > 10) {
+      return {
+        text: "Extreme",
+        protection: "Avoid being outside.",
+      };
     } else {
       return {
         text: "Extreme",
@@ -49,8 +54,10 @@ function UvIndex() {
 
   const marginLeftPercentage = (uvIndexMax / 14) * 100;
 
+  console.log(uvIndexMax);
+
   return (
-    <div className="pt-6 pb-5 px-4 h-[12rem] border rounded-lg flex flex-col gap-8 dark:bg-dark-grey shadow-sm dark:shadow-none">
+    <div className="pt-6 pb-5 px-4 h-[12rem] border rounded-lg flex flex-col gap-5 dark:bg-dark-grey shadow-sm dark:shadow-none">
       <div className="top">
         <h2 className="flex items-center gap-2 font-medium">{sun} Uv Index</h2>
         <div className="pt-4 flex flex-col gap-1">
