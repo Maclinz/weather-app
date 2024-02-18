@@ -54,8 +54,6 @@ function UvIndex() {
 
   const marginLeftPercentage = (uvIndexMax / 14) * 100;
 
-  console.log(uvIndexMax);
-
   return (
     <div className="pt-6 pb-5 px-4 h-[12rem] border rounded-lg flex flex-col gap-5 dark:bg-dark-grey shadow-sm dark:shadow-none">
       <div className="top">

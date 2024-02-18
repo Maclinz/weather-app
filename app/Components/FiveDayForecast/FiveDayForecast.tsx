@@ -14,8 +14,6 @@ function FiveDayForecast() {
     return <Skeleton className="h-[12rem] w-full" />;
   }
 
-  console.log(fiveDayForecast);
-
   const processData = (
     dailyData: {
       main: { temp_min: number; temp_max: number };
