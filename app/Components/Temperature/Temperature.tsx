@@ -15,20 +15,34 @@ import moment from "moment";
 function Temperature() {
   const { forecast } = useGlobalContext();
 
-  const { main, timezone, name, weather } = forecast;
+  // Initialize hooks BEFORE any condition
+  const [localTime, setLocalTime] = useState<string>("");
+  const [currentDay, setCurrentDay] = useState<string>("");
 
-  if (!forecast || !weather) {
+  useEffect(() => {
+    if (!forecast) return; // Don't run effect if forecast is unavailable
+
+    const interval = setInterval(() => {
+      const localMoment = moment().utcOffset(forecast.timezone / 60);
+      const formatedTime = localMoment.format("HH:mm:ss");
+      const day = localMoment.format("dddd");
+
+      setLocalTime(formatedTime);
+      setCurrentDay(day);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [forecast]);
+
+  if (!forecast || !forecast?.weather) {
     return <div>Loading...</div>;
   }
+
+  const { main, timezone, name, weather } = forecast;
 
   const temp = kelvinToCelsius(main?.temp);
   const minTemp = kelvinToCelsius(main?.temp_min);
   const maxTemp = kelvinToCelsius(main?.temp_max);
-
-  // State
-  const [localTime, setLocalTime] = useState<string>("");
-  const [currentDay, setCurrentDay] = useState<string>("");
-
   const { main: weatherMain, description } = weather[0];
 
   const getIcon = () => {
@@ -47,24 +61,6 @@ function Temperature() {
         return clearSky;
     }
   };
-
-  // Live time update
-  useEffect(() => {
-    // upadte time every second
-    const interval = setInterval(() => {
-      const localMoment = moment().utcOffset(timezone / 60);
-      // custom format: 24 hour format
-      const formatedTime = localMoment.format("HH:mm:ss");
-      // day of the week
-      const day = localMoment.format("dddd");
-
-      setLocalTime(formatedTime);
-      setCurrentDay(day);
-    }, 1000);
-
-    // clear interval
-    return () => clearInterval(interval);
-  }, [timezone]);
 
   return (
     <div
