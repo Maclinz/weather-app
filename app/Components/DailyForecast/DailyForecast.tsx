@@ -25,15 +25,15 @@ function DailyForecast() {
     return <Skeleton className="h-[12rem] w-full" />;
   }
 
-  const today = new Date();
-  const todayString = today.toISOString().split("T")[0];
+  const todayString = moment().format("YYYY-MM-DD");
 
   //filter the list for today's forecast
   const todaysForecast = list.filter(
-    (forecast: { dt_txt: string; main: { temp: number } }) => {
-      return forecast.dt_txt.startsWith(todayString);
-    }
+    (forecast: { dt_txt: string; main: { temp: number } }) =>
+      forecast.dt_txt.startsWith(todayString)
   );
+
+  console.log("todaysForecast", todaysForecast);
 
   const { main: weatherMain } = weather[0];
 
